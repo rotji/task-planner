@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Header from './components/Header';
 import InputBox from './components/InputBox';
 import OutputBox from './components/OutputBox';
