@@ -14,7 +14,7 @@ A full-stack hackathon project for the ADK-TS Hackathon 2025. This project helps
 - [x] Create TaskPlan model
 - [x] Implement /api/tasks POST route (mock agent logic)
 - [ ] Integrate ADK-TS agent
-- [ ] Build frontend UI (Landing, Dashboard, CSS Modules)
+- [x] Build frontend UI (Landing, Dashboard, CSS Modules)
 - [ ] Connect frontend to backend
 - [ ] Deploy MVP
 
