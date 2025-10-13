@@ -12,7 +12,7 @@ export const createTaskPlan = async (req: Request, res: Response) => {
 
     // Use ADK-TS AgentBuilder to generate task steps
     const agentResponse: any = await AgentBuilder
-      .withModel('gpt-4.1') // You can change to your preferred model
+      .withModel('gemini-pro') // Use Google Gemini model
       .ask(`Break down the following goal into actionable steps as a numbered list: ${goal}`);
 
     // Extract steps from agent response (assuming numbered list)
