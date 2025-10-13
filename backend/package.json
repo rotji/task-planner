@@ -9,6 +9,7 @@
     "start": "node dist/server.js"
   },
   "dependencies": {
+    "@iqai/adk": "^0.4.0",
     "@types/mongoose": "^5.11.96",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
