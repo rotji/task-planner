@@ -10,9 +10,12 @@ import { connectDB } from './config/db';
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Allow only your Netlify frontend
+// Allow Netlify and localhost for local development
 app.use(cors({
-  origin: 'https://ai-tasks.netlify.app'
+  origin: [
+    'https://ai-tasks.netlify.app',
+    'http://localhost:5173'
+  ]
 }));
 
 import taskRoutes from './routes/taskRoutes';
