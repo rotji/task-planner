@@ -1,13 +1,22 @@
 
 import dotenv from 'dotenv';
 dotenv.config();
+
 import express from 'express';
+import cors from 'cors';
 import { connectDB } from './config/db';
+
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Allow only your Netlify frontend
+app.use(cors({
+  origin: 'https://ai-tasks.netlify.app'
+}));
+
 import taskRoutes from './routes/taskRoutes';
+
 
 app.use(express.json());
 
