@@ -15,8 +15,8 @@ A full-stack hackathon project for the ADK-TS Hackathon 2025. This project helps
 - [x] Implement /api/tasks POST route (mock agent logic)
 - [ ] Integrate ADK-TS agent
 - [x] Build frontend UI (Landing, Dashboard, CSS Modules)
-- [ ] Connect frontend to backend
-- [ ] Deploy MVP
+- [x] Connect frontend to backend
+- [x] Deploy MVP
 
 ## Getting Started
 See `frontend/README.md` and `backend/README.md` for setup instructions.

@@ -35,16 +35,15 @@ Perfect — let’s create a **complete to-do list** for your AI Task Planner ha
      * Use CSS Modules for component styling: ✅
          * `Header.module.css`, `InputBox.module.css`, `OutputBox.module.css`, `Button.module.css` ✅
 
-5. **Connect Frontend → Backend**
 
-   * Axios/fetch call to `/api/tasks`.
-   * Display agent’s response on frontend.
+5. **Connect Frontend → Backend** ✅
+    * Axios/fetch call to `/api/tasks`. ✅
+    * Display agent’s response on frontend. ✅
 
-6. **Deploy MVP**
-
-   * Deploy backend (Railway, Render, or Vercel serverless function).
-   * Deploy frontend (Netlify or Vercel).
-   * Ensure demo works locally and online.
+6. **Deploy MVP** ✅
+    * Deploy backend (Railway, Render, or Vercel serverless function). ✅
+    * Deploy frontend (Netlify or Vercel). ✅
+    * Ensure demo works locally and online. ✅
 
 ---
 

@@ -7,6 +7,7 @@ This is the backend for the AI Task Planner project, built with Node.js, Express
 - MongoDB connection using Mongoose
 - TaskPlan model for storing user goals and generated steps
 - `/api/tasks` POST endpoint to create a new task plan (mock agent logic for now)
+- CORS enabled for frontend-backend integration (Netlify/Render)
 
 ## Getting Started
 
@@ -17,12 +18,18 @@ This is the backend for the AI Task Planner project, built with Node.js, Express
 2. Set up your `.env` file (see `.env.example`):
    ```env
    PORT=5000
-   MONGODB_URI=mongodb://localhost:27017/ai-task-planner
+   MONGO_URI=your-mongodb-uri
    ```
 3. Start the development server:
    ```sh
    npm run dev
    ```
+
+## Deployment
+
+- Backend deployed on Render
+- CORS enabled for Netlify frontend
+- See main README for full-stack deployment status
 
 ## API Endpoints
 
