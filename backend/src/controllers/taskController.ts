@@ -12,7 +12,7 @@ export const createTaskPlan = async (req: Request, res: Response) => {
 
     // Use ADK-TS AgentBuilder to generate task steps
     const agentResponse: any = await AgentBuilder
-      .withModel('gemini-pro') // Use Google Gemini model
+      .withModel('gemini-2.5-flash') // Use Google Gemini 2.5 Flash model
       .ask(`Break down the following goal into actionable steps as a numbered list: ${goal}`);
 
     // Extract steps from agent response (assuming numbered list)
