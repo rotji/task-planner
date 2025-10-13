@@ -12,8 +12,8 @@ A full-stack hackathon project for the ADK-TS Hackathon 2025. This project helps
 - [x] Setup .env and folder structure
 - [x] Setup database connection (Mongoose, MongoDB)
 - [x] Create TaskPlan model
-- [x] Implement /api/tasks POST route (mock agent logic)
-- [ ] Integrate ADK-TS agent
+- [x] Implement /api/tasks POST route (ADK-TS agent integrated)
+- [x] Integrate ADK-TS agent
 - [x] Build frontend UI (Landing, Dashboard, CSS Modules)
 - [x] Connect frontend to backend
 - [x] Deploy MVP

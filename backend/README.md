@@ -6,7 +6,7 @@ This is the backend for the AI Task Planner project, built with Node.js, Express
 - Express server with TypeScript
 - MongoDB connection using Mongoose
 - TaskPlan model for storing user goals and generated steps
-- `/api/tasks` POST endpoint to create a new task plan (mock agent logic for now)
+- `/api/tasks` POST endpoint to create a new task plan (powered by ADK-TS agent)
 - CORS enabled for frontend-backend integration (Netlify/Render)
 
 ## Getting Started

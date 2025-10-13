@@ -32,6 +32,10 @@ This is the frontend for the AI Task Planner project, built with React, TypeScri
 ---
 
 See main project README for full-stack setup and deployment status.
+
+## Upcoming Feature
+
+- Google Calendar integration: Schedule tasks directly from the planner UI (in progress)
   },
 ])
 ```

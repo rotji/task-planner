@@ -47,6 +47,14 @@ Perfect — let’s create a **complete to-do list** for your AI Task Planner ha
 
 ---
 
+### **NEXT FEATURE: Google Calendar Integration**
+
+* Integrate Google Calendar API to allow users to schedule tasks directly from the planner.
+* Add UI for calendar sync and event creation.
+* Update backend to support Google OAuth and event creation endpoints.
+
+---
+
 ### **MEDIUM STAGE (Bonus Features / Upgrade)**
 
 7. **User Management**
