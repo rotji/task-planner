@@ -15,10 +15,13 @@ app.use(cors({
   origin: [
     'https://ai-tasks.netlify.app',
     'http://localhost:5173'
-  ]
+  ],
+  credentials: true,
 }));
 
+
 import taskRoutes from './routes/taskRoutes';
+import googleRoutes from './routes/googleRoutes';
 
 
 app.use(express.json());
@@ -28,6 +31,9 @@ app.get('/', (req, res) => {
 });
 
 // Register task routes
+
+// Register Google OAuth2 routes
+app.use('/api/google', googleRoutes);
 app.use('/api', taskRoutes);
 
 connectDB().then(() => {
