@@ -20,8 +20,10 @@ app.use(cors({
 }));
 
 
+
 import taskRoutes from './routes/taskRoutes';
 import googleRoutes from './routes/googleRoutes';
+import authRoutes from './routes/authRoutes';
 
 
 app.use(express.json());
@@ -33,11 +35,16 @@ app.get('/', (req, res) => {
 // Register task routes
 
 // Register Google OAuth2 routes
+app.use('/api/auth', authRoutes);
 app.use('/api/google', googleRoutes);
 app.use('/api', taskRoutes);
 
 connectDB().then(() => {
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
+    // Non-sensitive startup check for Google OAuth env vars
+    const gClient = !!process.env.GOOGLE_CLIENT_ID;
+    const gRedirect = !!process.env.GOOGLE_REDIRECT_URI;
+    console.log(`Google OAuth env - CLIENT_ID set: ${gClient}, REDIRECT_URI set: ${gRedirect}`);
   });
 });
