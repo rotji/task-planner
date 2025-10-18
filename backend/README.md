@@ -25,6 +25,27 @@ This is the backend for the AI Task Planner project, built with Node.js, Express
    npm run dev
    ```
 
+### New: Google Calendar & Auth notes
+This backend now includes user authentication (register/login) with JWTs and Google Calendar integration:
+
+- Required env variables (in addition to the above):
+  - `JWT_SECRET` — secret for signing app JWTs
+  - `GOOGLE_CLIENT_ID` — OAuth client ID from Google Cloud
+  - `GOOGLE_CLIENT_SECRET` — OAuth client secret from Google Cloud
+  - `GOOGLE_REDIRECT_URI` — backend callback URL (e.g., `http://localhost:5000/api/google/callback`)
+  - `FRONTEND_REDIRECT_URI` — frontend base URL used when redirecting after OAuth
+
+- Routes added:
+  - `POST /api/auth/register` — create a user (returns app JWT)
+  - `POST /api/auth/login` — login (returns app JWT)
+  - `GET /api/google/auth` — starts Google OAuth flow (expects `state` to include app JWT)
+  - `GET /api/google/callback` — OAuth callback (saves Google tokens to the user record)
+  - `POST /api/google/event` — create a single calendar event (requires app JWT)
+  - `POST /api/google/events/bulk` — create multiple events (requires app JWT)
+  - `GET /api/google/events` — list upcoming events (requires app JWT)
+
+Tokens are persisted on the user document (access_token + refresh_token + expiry_date). The server performs refreshes server-side and persists updates, so users don't need to re-auth frequently.
+
 ## Deployment
 
 - Backend deployed on Render
