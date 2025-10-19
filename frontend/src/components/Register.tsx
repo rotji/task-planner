@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { safeParseBody } from '../services/api';
+
+const API_BASE = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
 
 interface RegisterProps {
   onRegister: () => void;
@@ -15,15 +18,16 @@ const Register: React.FC<RegisterProps> = ({ onRegister }) => {
     setError(null);
     setSuccess(false);
     try {
-      const res = await fetch('/api/auth/register', {
+      const res = await fetch(`${API_BASE}/api/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
+      const data = await safeParseBody(res);
       if (!res.ok) {
-        const data = await res.json();
-        setError(data.error || 'Registration failed');
-        window.alert(data.error || 'Registration failed');
+        const msg = data && (data.error || data.message) ? (data.error || data.message) : res.statusText;
+        setError(msg || 'Registration failed');
+        window.alert(msg || 'Registration failed');
         return;
       }
       setSuccess(true);

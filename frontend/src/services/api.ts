@@ -4,6 +4,19 @@ function getAuthHeaders(): { [key: string]: string } {
   return jwt ? { Authorization: `Bearer ${jwt}` } : {};
 }
 
+// Safely parse JSON responses. If response is empty or not JSON, return null or raw text.
+async function safeParseBody(response: Response) {
+  const text = await response.text();
+  if (!text) return null;
+  try {
+    return JSON.parse(text);
+  } catch {
+    // Not JSON
+    return text;
+  }
+}
+export { safeParseBody };
+
 // Create multiple Google Calendar events from an array of tasks
 export async function createMultipleCalendarEvents(tasks: { summary: string; description?: string; start?: string; end?: string }[]) {
   const response = await fetch(`${API_BASE_URL}/api/google/events/bulk`, {
@@ -23,9 +36,10 @@ export async function createMultipleCalendarEvents(tasks: { summary: string; des
   }
 
   if (!response.ok) {
-    throw new Error('Failed to create multiple calendar events');
+    const body = await safeParseBody(response);
+    throw new Error('Failed to create multiple calendar events: ' + (body && (body.error || body.message || String(body))));
   }
-  return response.json();
+  return safeParseBody(response);
 }
 // Google Calendar API
 export async function createCalendarEvent(event: { summary: string; description?: string; start: string; end: string }) {
@@ -38,9 +52,10 @@ export async function createCalendarEvent(event: { summary: string; description?
     body: JSON.stringify(event),
   });
   if (!response.ok) {
-    throw new Error('Failed to create calendar event');
+    const body = await safeParseBody(response);
+    throw new Error('Failed to create calendar event: ' + (body && (body.error || body.message || String(body))));
   }
-  return response.json();
+  return safeParseBody(response);
 }
 
 export async function listCalendarEvents() {
@@ -50,9 +65,10 @@ export async function listCalendarEvents() {
     },
   });
   if (!response.ok) {
-    throw new Error('Failed to list calendar events');
+    const body = await safeParseBody(response);
+    throw new Error('Failed to list calendar events: ' + (body && (body.error || body.message || String(body))));
   }
-  return response.json();
+  return safeParseBody(response);
 }
 const API_BASE_URL = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
 
@@ -65,7 +81,8 @@ export async function createTaskPlan(goal: string) {
     body: JSON.stringify({ goal }),
   });
   if (!response.ok) {
-    throw new Error('Failed to create task plan');
+    const body = await safeParseBody(response);
+    throw new Error('Failed to create task plan: ' + (body && (body.error || body.message || String(body))));
   }
-  return response.json();
+  return safeParseBody(response);
 }
