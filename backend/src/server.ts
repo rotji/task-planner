@@ -21,10 +21,7 @@ app.use(cors({
 
 
 
-import taskRoutes from './routes/taskRoutes';
-import googleRoutes from './routes/googleRoutes';
-import authRoutes from './routes/authRoutes';
-import googleMcpRoutes from './routes/googleMcpRoutes';
+import { taskRoutes, googleRoutes, authRoutes, googleMcpRoutes } from './routes';
 
 
 app.use(express.json());
