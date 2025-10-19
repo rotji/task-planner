@@ -99,6 +99,3 @@ Tokens are persisted on the user document (access_token + refresh_token + expiry
 - Integrate ADK-TS agent for real task planning
 - Add more endpoints as needed
 
----
-
-For more details, see the main project README.
