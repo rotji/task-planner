@@ -1,0 +1,75 @@
+{
+  "name": "google-calendar-mcp",
+  "version": "0.1.0",
+  "description": "MCP wrapper providing calendar context (free/busy, list events) and action endpoints (create events) for ADK-TS agents.",
+  "author": "AI Task Planner",
+  "homepage": "https://github.com/rotji/task-planner",
+  "endpoints": {
+    "metadata": {
+      "method": "GET",
+      "path": "/api/mcp/google-calendar/metadata",
+      "auth": "none"
+    },
+    "docs": {
+      "method": "GET",
+      "path": "/api/mcp/google-calendar/docs",
+      "auth": "none"
+    },
+    "query": {
+      "method": "POST",
+      "path": "/api/mcp/google-calendar/query",
+      "auth": "bearer",
+      "body": {
+        "userId?": "string",
+        "query": {
+          "type": "freeBusy|listUpcoming",
+          "params?": "object"
+        }
+      }
+    },
+    "act": {
+      "method": "POST",
+      "path": "/api/mcp/google-calendar/act",
+      "auth": "bearer",
+      "body": {
+        "userId?": "string",
+        "actions": [
+          {
+            "type": "createEvent",
+            "params": {
+              "summary": "string",
+              "description?": "string",
+              "start": { "dateTime": "string" },
+              "end": { "dateTime": "string" }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "capabilities": ["queryFreeBusy","listEvents","createEvent","bulkCreateEvents"],
+  "example": {
+    "queryFreeBusy": {
+      "request": {
+        "query": {
+          "type": "freeBusy",
+          "params": { "timeMin": "2025-10-19T00:00:00Z", "timeMax": "2025-10-26T00:00:00Z" }
+        }
+      }
+    },
+    "createEvent": {
+      "request": {
+        "actions": [
+          {
+            "type": "createEvent",
+            "params": {
+              "summary": "Follow up",
+              "start": { "dateTime": "2025-10-20T09:00:00Z" },
+              "end": { "dateTime": "2025-10-20T09:30:00Z" }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
