@@ -1,26 +1,14 @@
 import { Request, Response } from 'express';
 import { google } from 'googleapis';
 import User from '../models/User';
+import { getOAuthClientForUser } from '../controllers/googleController';
 
 // Lightweight MCP-style wrapper over Google Calendar functionality.
 // Endpoints are consumed by agents or other services. They expect the
 // requesting service to supply a userId (or rely on the authenticated user via middleware).
 
-// Helper: get OAuth client for a user (reuse logic from googleController if desired)
-async function getOAuthClientForUser(user: any) {
-  if (!user) throw new Error('No user provided');
-  if (!user.googleTokens) throw new Error('No Google tokens stored for user');
-  const client = new google.auth.OAuth2(
-    process.env.GOOGLE_CLIENT_ID,
-    process.env.GOOGLE_CLIENT_SECRET,
-    process.env.GOOGLE_REDIRECT_URI
-  );
-  client.setCredentials(user.googleTokens);
-  // Note: token refresh is intentionally lightweight here; the existing googleController
-  // contains a more robust refresh + persistence implementation. For MCP usage we call
-  // that refresh via user.save() if needed in production.
-  return client;
-}
+// Reuse getOAuthClientForUser exported by googleController — it will refresh tokens and persist
+// them to the User document when necessary.
 
 // GET /metadata
 export const metadata = async (_req: Request, res: Response) => {
