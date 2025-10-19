@@ -28,7 +28,7 @@ console.log('Google OAuth config:', {
 let oauthTokens: any = null;
 
 // Helper: get OAuth2 client for a user, refresh tokens if expired, and persist updates
-async function getOAuthClientForUser(user: any) {
+export async function getOAuthClientForUser(user: any) {
   if (!user) throw new Error('No user provided');
   if (!user.googleTokens) throw new Error('No Google tokens stored for user');
 

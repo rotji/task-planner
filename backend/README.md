@@ -25,6 +25,35 @@ This is the backend for the AI Task Planner project, built with Node.js, Express
    npm run dev
    ```
 
+### Google Calendar MCP Expansion
+
+This backend now exposes a reusable MCP (Model Context Protocol) wrapper for Google Calendar. It is located at `backend/src/mcp` and includes:
+
+- `googleCalendarMcp.ts` — MCP controller with `metadata`, `query`, `act` and `docs` endpoints.
+- `routes/googleMcpRoutes.ts` — route wiring under `/api/mcp/google-calendar`.
+- `mcp/mcp.json` — machine-readable MCP manifest (discovery / submission).
+
+Quick local test (assumes the backend is running and you have a user with Google tokens):
+
+1. Start the backend:
+```powershell
+cd backend
+npm run dev
+```
+
+2. Check metadata (no auth required):
+```powershell
+Invoke-RestMethod -Method Get -Uri http://localhost:5000/api/mcp/google-calendar/metadata
+```
+
+3. Query or act using your app JWT (see auth endpoints in this README):
+```powershell
+# example: list upcoming events (replace <JWT>)
+Invoke-RestMethod -Method Post -Uri http://localhost:5000/api/mcp/google-calendar/query -Headers @{ Authorization = 'Bearer <JWT>'; 'Content-Type' = 'application/json' } -Body (@{ query = @{ type = 'listUpcoming'; params = @{ maxResults = 5 } } } | ConvertTo-Json)
+```
+
+See `backend/mcp/README.md` for more details on the API shapes and how to include the MCP in ADK-TS submissions.
+
 ### New: Google Calendar & Auth notes
 This backend now includes user authentication (register/login) with JWTs and Google Calendar integration:
 

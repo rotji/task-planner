@@ -21,9 +21,7 @@ app.use(cors({
 
 
 
-import taskRoutes from './routes/taskRoutes';
-import googleRoutes from './routes/googleRoutes';
-import authRoutes from './routes/authRoutes';
+import { taskRoutes, googleRoutes, authRoutes, googleMcpRoutes } from './routes';
 
 
 app.use(express.json());
@@ -38,6 +36,8 @@ app.get('/', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/google', googleRoutes);
 app.use('/api', taskRoutes);
+// MCP endpoints for reusable Model Context Protocol integrations
+app.use('/api/mcp/google-calendar', googleMcpRoutes);
 
 connectDB().then(() => {
   app.listen(PORT, () => {

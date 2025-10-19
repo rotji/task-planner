@@ -31,6 +31,18 @@ This repository now includes a Google Calendar integration and user authenticati
 
 See `backend/README.md` and `frontend/README.md` for details on env vars, running locally, and OAuth redirect configuration.
 
+## MCP Expansion (Google Calendar)
+
+This repository includes a Model Context Protocol (MCP) expansion for Google Calendar. The MCP is packaged under `backend/src/mcp` and exposes the following endpoints (mounted at `/api/mcp/google-calendar`):
+
+- `GET /metadata` — MCP metadata and capabilities
+- `POST /query` — query calendar context (freeBusy, listUpcoming)
+- `POST /act` — request actions such as creating events
+
+The MCP also includes a machine-readable manifest at `backend/mcp/mcp.json` to ease discovery and satisfy ADK-TS MCP guide expectations: https://adk.iqai.com/docs/framework/tools/mcp-tools
+
+If you're preparing this project as an ADK-TS MCP submission, include `backend/mcp/mcp.json` and the MCP README in your submission archive.
+
 ---
 
 This project is built step-by-step following a clear roadmap for hackathon success.
