@@ -26,3 +26,7 @@ Body: `{ "actions": [{ "type": "createEvent", "params": { "summary": "Do researc
 
 Notes
 - This MCP is intentionally lightweight and meant to be a clear example you can extend. For production use, reuse the token refresh logic in `googleController` and add more robust error handling and rate limiting.
+
+MCP manifest and ADK-TS guidance
+- A machine-readable manifest `mcp.json` is included alongside this code at `backend/mcp/mcp.json`. The manifest follows the ADK-TS MCP guidance for discoverability and submission: https://adk.iqai.com/docs/framework/tools/mcp-tools
+- When preparing an MCP submission, include both the code and the `mcp.json` manifest. Provide a short example (as included in `examples/agent-uses-google-mcp.md`) that demonstrates an agent querying the MCP and requesting actions.
