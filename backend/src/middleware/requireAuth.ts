@@ -4,7 +4,8 @@ import User from '../models/User';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'changeme';
 
-export interface AuthRequest extends Request {
+// Make AuthRequest generic so handlers can access req.body with proper typing
+export interface AuthRequest<ReqBody = any> extends Request<Record<string, any>, any, ReqBody> {
   user?: any;
 }
 
