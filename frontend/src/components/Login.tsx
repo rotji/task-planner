@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { safeParseBody } from '../services/api';
+
+const API_BASE = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
 
 interface LoginProps {
   onLogin: (token: string) => void;
@@ -13,19 +16,20 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
     e.preventDefault();
     setError(null);
     try {
-      const res = await fetch('/api/auth/login', {
+      const res = await fetch(`${API_BASE}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
-      const data = await res.json();
+      const data = await safeParseBody(res);
       if (!res.ok) {
-        setError(data.error || 'Login failed');
-        window.alert(data.error || 'Login failed');
+        const msg = data && (data.error || data.message) ? (data.error || data.message) : res.statusText;
+        setError(msg || 'Login failed');
+        window.alert(msg || 'Login failed');
         return;
       }
       window.alert('Login successful!');
-      onLogin(data.token);
+      if (data && (data.token || data.token)) onLogin(data.token);
     } catch (err: unknown) {
       console.error('Login error', err);
       setError('Login failed');
